@@ -1,0 +1,99 @@
+<div class="content-box">
+    <!-- Hero Section -->
+    <section class="section section-hero">
+        <div class="hero-box">
+            <div class="container">
+                <div class="hero-text align-center">
+                    <h1>118 Citations</h1>
+                    <p>Create a new citation</p>
+                </div>
+
+                <form name="newCitationForm" class="new-citation-form" novalidate>
+                    <div class="input-line">
+                        <label for="business-name" class="form-input-label required">Business Name:</label>
+                        <input name="businessName" type="text" id="business-name" class="form-input" placeholder="BUSINESS NAME" ng-model="newCitation.businessName" ng-maxlength="100" ng-minlength="3" ng-pattern="/^[a-zA-Z0-9 !&()@,./-]*$/" required/>
+                        <p ng-show="newCitationForm.businessName.$error.minlength && !newCitationForm.businessName.$pristine" class="help-block">Business Name is too short</p>
+                        <p ng-show="newCitationForm.businessName.$error.maxlength && !newCitationForm.businessName.$pristine" class="help-block">Business Name is too long</p>
+                        <p ng-show="newCitationForm.businessName.$error.required && !newCitationForm.businessName.$pristine" class="help-block">Business Name is required</p>
+                        <p ng-show="newCitationForm.businessName.$error.pattern && !newCitationForm.businessName.$pristine" class="help-block">Invalid Business Name</p>
+                    </div>
+                    <div class="input-line">
+                        <label for="add1" class="form-input-label required">Address 1:</label>
+                        <input name="address1" type="text" id="add1" class="form-input" placeholder="ADDRESS 1" ng-model="newCitation.address1" ng-maxlength="100" ng-minlength="1" ng-pattern="/^[a-zA-Z0-9 !&()@,./-]*$/" required/>
+                        <p ng-show="newCitationForm.address1.$error.minlength && !newCitationForm.address1.$pristine" class="help-block">Address 1 is too long</p>
+                        <p ng-show="newCitationForm.address1.$error.required && !newCitationForm.address1.$pristine" class="help-block">Address 1 is required</p>
+                        <p ng-show="newCitationForm.address1.$error.maxlength && !newCitationForm.address1.$pristine" class="help-block">Address 1 is too long</p>
+                        <p ng-show="newCitationForm.address1.$error.pattern && !newCitationForm.address1.$pristine" class="help-block">Invalid Address 1</p>
+                    </div>
+                    <div class="input-line">
+                        <label for="add2" class="form-input-label">Address 2:</label>
+                        <input name="address2" type="text" class="form-input" id="add2" placeholder="ADDRESS 2" ng-model="newCitation.address2" ng-maxlength="100" ng-minlength="1" ng-pattern="/^[a-zA-Z0-9 !&()@,./-]*$/"/>
+                        <p ng-show="newCitationForm.address2.$error.minlength && !newCitationForm.address2.$pristine" class="help-block">Address 2 is too short</p>
+                        <p ng-show="newCitationForm.address2.$error.maxlength && !newCitationForm.address2.$pristine" class="help-block">Address 2 is too long</p>
+                        <p ng-show="newCitationForm.address2.$error.required && !newCitationForm.address2.$pristine" class="help-block">Address 2 is required</p>
+                        <p ng-show="newCitationForm.address2.$error.pattern && !newCitationForm.address2.$pristine" class="help-block">Invalid Address 2</p>
+                    </div>
+                    <div class="input-line">
+                        <label for="locality" class="form-input-label">Locality:</label>
+                        <input name="locality" type="text" class="form-input" id="locality" placeholder="LOCALITY" ng-model="newCitation.locality" ng-maxlength="50" ng-minlength="2" ng-pattern="/^[a-zA-Z0-9 !&()@,./-]*$/"/>
+                        <p ng-show="newCitationForm.locality.$error.minlength && !newCitationForm.locality.$pristine" class="help-block">Locality is too short</p>
+                        <p ng-show="newCitationForm.locality.$error.maxlength && !newCitationForm.locality.$pristine" class="help-block">Locality is too long</p>
+                        <p ng-show="newCitationForm.locality.$error.required && !newCitationForm.locality.$pristine" class="help-block">Locality is required</p>
+                        <p ng-show="newCitationForm.locality.$error.pattern && !newCitationForm.locality.$pristine" class="help-block">Invalid Locality</p>
+                    </div>
+                    <div class="input-line">
+                        <label for="town" class="form-input-label">Town:</label>
+                        <input name="town" type="text" class="form-input" id="town" placeholder="TOWN" ng-model="newCitation.town" ng-maxlength="30" ng-minlength="3" ng-pattern="/^[a-zA-Z0-9 !&()@,./-]*$/"/>
+                        <p ng-show="newCitationForm.town.$error.minlength && !newCitationForm.town.$pristine" class="help-block">Town is too short</p>
+                        <p ng-show="newCitationForm.town.$error.maxlength && !newCitationForm.town.$pristine" class="help-block">Town is too long</p>
+                        <p ng-show="newCitationForm.town.$error.required && !newCitationForm.town.$pristine" class="help-block">Town is required</p>
+                        <p ng-show="newCitationForm.town.$error.pattern && !newCitationForm.town.$pristine" class="help-block">Invalid Town</p>
+                    </div>
+                    <div class="input-line">
+                        <label for="county" class="form-input-label">County:</label>
+                        <input name="county" type="text" class="form-input" id="county" placeholder="COUNTY" ng-model="newCitation.county" ng-maxlength="25" ng-minlength="4" ng-pattern="/^[a-zA-Z0-9 !&()@,./-]*$/"/>
+                        <p ng-show="newCitationForm.county.$error.minlength && !newCitationForm.county.$pristine" class="help-block">County is too short</p>
+                        <p ng-show="newCitationForm.county.$error.maxlength && !newCitationForm.county.$pristine" class="help-block">County is too long</p>
+                        <p ng-show="newCitationForm.county.$error.required && !newCitationForm.county.$pristine" class="help-block">County is required</p>
+                        <p ng-show="newCitationForm.county.$error.pattern && !newCitationForm.county.$pristine" class="help-block">Invalid County</p>
+                    </div>
+                    <div class="input-line">
+                        <label for="postcode" class="form-input-label required">Postcode:</label>
+                        <input name="postcode" type="text" class="form-input" id="postcode" placeholder="POSTCODE" ng-model="newCitation.postcode" ng-maxlength="8" ng-minlength="5" required ng-pattern="/[a-zA-Z]{1,2}[0-9]{1,2}[a-zA-Z]? ?[0-9][a-zA-Z]{2}/"/>
+                        <p ng-show="newCitationForm.postcode.$error.minlength && !newCitationForm.postcode.$pristine" class="help-block">Postcode is too short</p>
+                        <p ng-show="newCitationForm.postcode.$error.maxlength && !newCitationForm.postcode.$pristine" class="help-block">Postcode is too long</p>
+                        <p ng-show="newCitationForm.postcode.$error.required && !newCitationForm.postcode.$pristine" class="help-block">Postcode is required</p>
+                        <p ng-show="newCitationForm.postcode.$error.pattern && !newCitationForm.postcode.$pristine" class="help-block">Invalid Postcode</p>
+                    </div>
+                    <div class="input-line">
+                        <label for="telephone" class="form-input-label required">Telephone:</label>
+                        <input name="telephone" type="text" class="form-input" id="telephone" placeholder="TELEPHONE" ng-model="newCitation.telephone" ng-maxlength="15" ng-minlength="10" required ng-pattern="/^0[0-9]*[- ]?[0-9]*[ ]?[0-9]*/"/>
+                        <p ng-show="newCitationForm.telephone.$error.minlength && !newCitationForm.telephone.$pristine" class="help-block">Telephone is too short</p>
+                        <p ng-show="newCitationForm.telephone.$error.maxlength && !newCitationForm.telephone.$pristine" class="help-block">Telephone is too long</p>
+                        <p ng-show="newCitationForm.telephone.$error.required && !newCitationForm.telephone.$pristine" class="help-block">Telephone is required</p>
+                        <p ng-show="newCitationForm.telephone.$error.pattern && !newCitationForm.telephone.$pristine" class="help-block">Invalid Telephone</p>
+                    </div>
+                    <div class="input-line">
+                        <label for="url" class="form-input-label">URL:</label>
+                        <input name="url" type="text" class="form-input" id="url" placeholder="URL" ng-model="newCitation.url" ng-maxlength="150" ng-minlength="7" ng-pattern="/^www\.+[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$/"/>
+                        <p ng-show="newCitationForm.url.$error.minlength && !newCitationForm.url.$pristine" class="help-block">URL is too short</p>
+                        <p ng-show="newCitationForm.url.$error.maxlength && !newCitationForm.url.$pristine" class="help-block">URL is too long</p>
+                        <p ng-show="newCitationForm.url.$error.required && !newCitationForm.url.$pristine" class="help-block">URL is required</p>
+                        <p ng-show="newCitationForm.url.$error.pattern && !newCitationForm.url.$pristine" class="help-block">Invalid URL</p>
+                    </div>
+                    <div class="input-line">
+                        <label for="sector" class="form-input-label required">Sector:</label>
+                        <select id="sector" name="sector" ng-model="newCitation.sector" ng-required="true" class="form-input">
+                            <option ng-repeat="sector in sectors" value="{{sector.easy_id}}">{{sector.easy_desc}}</option>
+                        </select>
+                        <p ng-show="newCitationForm.sector.$error.minlength && !newCitationForm.sector.$pristine" class="help-block">Sector is too short</p>
+                        <p ng-show="newCitationForm.sector.$error.maxlength && !newCitationForm.sector.$pristine" class="help-block">Sector is too long</p>
+                        <p ng-show="newCitationForm.sector.$error.required && !newCitationForm.sector.$pristine" class="help-block">Sector is required</p>
+                        <p ng-show="newCitationForm.sector.$error.pattern && !newCitationForm.sector.$pristine" class="help-block">Invalid Sector</p>
+                    </div>
+                    <button type="submit" class="btn btn-default form-submit btn-special btn-block" ng-click="createNewCitation()" ng-disabled="newCitationForm.$invalid">Create</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>

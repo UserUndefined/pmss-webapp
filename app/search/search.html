@@ -1,0 +1,66 @@
+<div class="content-box">
+    <!-- Hero Section -->
+    <section class="section section-hero">
+        <div class="hero-box">
+            <div class="container">
+                <div class="hero-text align-center">
+                    <h1>118 Citations</h1>
+                    <p>Search for existing citations</p>
+                </div>
+
+                <form class="destinations-form">
+                    <div class="input-line">
+                        <input type="text" name="destination" value="" class="form-input check-value" placeholder="ENTER A BUSINESS NAME" ng-model="searchBusinessName"/>
+                        <button type="button" name="destination-submit" class="form-submit btn btn-special" ng-click="getCitations()">Find citations</button>
+                    </div>
+                </form>
+            </div>
+            <div class="container" ng-if="citations.length > 0">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <!--td style="width: 30px;"></td-->
+                            <td>Business Name</td>
+                            <td>Address 1</td>
+                            <td>Address 2</td>
+                            <td>Locality</td>
+                            <td>Town</td>
+                            <td>County</td>
+                            <td>Postcode</td>
+                            <td>Telephone</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!--tr ng-repeat-start="citation in citations"-->
+                        <tr ng-repeat="citation in citations">
+                            <!--td>
+                                <button ng-if="citation.expanded" ng-click="citation.expanded = false">-</button>
+                                <button ng-if="!citation.expanded" ng-click="citation.expanded = true">+</button>
+                            </td-->
+                            <td>{{citation.business_name}}</td>
+                            <td>{{citation.add1}}</td>
+                            <td>{{citation.add2}}</td>
+                            <td>{{citation.locality}}</td>
+                            <td>{{citation.town}}</td>
+                            <td>{{citation.county}}</td>
+                            <td>{{citation.post_code}}</td>
+                            <td>{{citation.telno}}</td>
+                        </tr>
+                        <!--tr ng-if="citation.expanded" ng-repeat-end="">
+                            <td></td>
+                            <td colspan="2">{{citation.business_name}}<br/>
+                                <span ng-if="citation.add1">{{citation.add1}}<br/></span>
+                                <span ng-if="citation.add2">{{citation.add2}}<br/></span>
+                                <span ng-if="citation.add3">{{citation.add3}}<br/></span>
+                                <span ng-if="citation.locality">{{citation.locality}}<br/></span>
+                                <span ng-if="citation.town">{{citation.town}}<br/></span>
+                                <span ng-if="citation.postcode">{{citation.postcode}}<br/></span>
+                                <span ng-if="citation.telno">{{citation.telno}}<br/></span>
+                        </tr-->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+</div>

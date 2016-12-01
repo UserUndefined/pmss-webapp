@@ -1,0 +1,15 @@
+{
+  "name": "pmss-webapp",
+  "description": "Internal system application",
+  "version": "0.0.1",
+  "homepage": "https://github.com/UserUndefined/pmss-webapp",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "^1.5.9",
+    "angular-route": "^1.5.9",
+    "angular-loader": "^1.5.9",
+    "angular-mocks": "^1.5.9",
+    "html5-boilerplate": "^5.3.0"
+  }
+}
