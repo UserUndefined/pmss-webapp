@@ -3,13 +3,12 @@
 // Declare app level module which depends on views, and components
 angular.module('myApp', [
   'ngRoute',
-    'search',
     'dashboard',
-  'new',
+    'developments',
   'myApp.version'
 ]).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');
 
-  $routeProvider.otherwise({redirectTo: '/dashboard'});
+  $routeProvider.otherwise({redirectTo: '/'});
 }]);
