@@ -7,6 +7,7 @@ angular.module('myApp', [
     'developments',
     'login',
     'myApp.version',
+    'navbar',
     'angular-jwt'
 ]).config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
     //$locationProvider.html5Mode({enabled: true,requireBase: false});
@@ -14,9 +15,9 @@ angular.module('myApp', [
     //$routeProvider.otherwise({redirectTo: '/login'});
 }])
     .run(['$rootScope', 'authService', '$location', function ($rootScope, authService, $location) {
-        // Put the authService on $rootScope so its methods
+        //t the authService on $rootScope so its methods
         // can be accessed from the nav bar
-        $rootScope.authService = authService;
+        //$rootScope.authService = authService;
 
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
             // redirect to login page if not logged in

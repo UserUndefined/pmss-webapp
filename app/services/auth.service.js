@@ -32,11 +32,11 @@
             });
 
             var authenticationData = {
-                Username: '',
-                Password: ''
+                Username: 'cristov2',
+                Password: 'Y7l7d@xL'
             };
             var userData = {
-                Username: '',
+                Username: 'cristov2',
                 Pool: userPool
             };
             var authenticationDetails = new AWSCognito.CognitoIdentityServiceProvider.AuthenticationDetails(authenticationData);

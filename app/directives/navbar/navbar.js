@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp')
+angular.module('navbar', [])
 
     .directive('navbar', function () {
         return {
@@ -10,7 +10,7 @@ angular.module('myApp')
         }
     })
 
-    .controller('NavbarController', ['$scope', 'authService', '$location', function ($scope, authService, $location) {
+    .controller('NavbarController', ['$scope', '$location', 'authService', function ($scope, $location, authService) {
         $scope.signOut = function(){
             authService.logout(function(err){
                 if (err){
@@ -19,6 +19,6 @@ angular.module('myApp')
                     $location.path('/login');
                 }
             });
-        }
+        };
     }])
 ;
