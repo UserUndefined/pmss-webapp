@@ -31,6 +31,7 @@
     "unit": "cross-env NODE_ENV=test ./node_modules/.bin/gulp unit"
   },
   "dependencies": {
+    "bootstrap-sass": "^3.3.7",
     "cross-env": "^3.1.1",
     "lodash": "^4.17.2"
   },
