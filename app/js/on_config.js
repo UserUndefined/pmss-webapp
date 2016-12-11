@@ -22,7 +22,13 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider, $compil
       controller: 'TestController as test',
       templateUrl: 'test.html',
       title: 'Test'
-    });
+    })
+    .state('Development', {
+    url: '/development',
+    controller: 'DevelopmentController as development',
+    templateUrl: 'development.html',
+    title: 'Development'
+  });
 
   $urlRouterProvider.otherwise('/');
 
