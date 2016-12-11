@@ -10,12 +10,13 @@
         <uib-tabset active="activeJustified" justified="true">
           <uib-tab index="0" heading="Sourcing Step 1">
             <div class="uib-tab-content">
-              <form style="padding-top: 20px">
+              <form name="sourcingStep1Form" style="padding-top: 20px" novalidate>
                 <div class="row">
                   <div class="col-sm-6">
-                    <div class="form-group">
+                    <div class="form-group" ng-class="{ 'has-error' : sourcingStep1Form.devName.$invalid && !sourcingStep1Form.devName.$pristine }">
                       <label for="devName">Development Name</label>
-                      <input type="text" class="form-control" id="devName" placeholder="Development Name">
+                      <input type="text" class="form-control" id="devName" name="devName" placeholder="Development Name" ng-model="user.name" ng-minlength="3" required>
+                      <p ng-show="sourcingStep1Form.devName.$invalid && !sourcingStep1Form.devName.$pristine" class="help-block">Development name is required.</p>
                     </div>
                   </div>
                   <div class="col-sm-6">
@@ -375,7 +376,6 @@
                 </div>
               </form>
             </div>
-          </div>
           </uib-tab>
         </uib-tabset>
       </div>
