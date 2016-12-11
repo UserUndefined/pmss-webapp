@@ -6,6 +6,7 @@ import onConfig  from './on_config';
 import onRun     from './on_run';
 import 'angular-ui-router';
 import 'angular-ui-bootstrap';
+import 'ngstorage';
 import './templates';
 import './filters';
 import './controllers';
@@ -20,7 +21,8 @@ const requires = [
   'app.filters',
   'app.controllers',
   'app.services',
-  'app.directives'
+  'app.directives',
+  'ngStorage'
 ];
 
 // mount on window for testing

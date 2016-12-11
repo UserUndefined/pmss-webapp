@@ -6,7 +6,8 @@ function NavbarDirective() {
     scope: {
       title: '@',
       message: '@clickMessage'
-    }
+    },
+    controller: 'NavbarController as vm'
   }
 }
 
