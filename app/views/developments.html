@@ -1,0 +1,37 @@
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="dashboard">
+        <h1>Developments {{vm.test}}</h1>
+        <table class="table">
+          <thead>
+          <tr>
+            <th>Development Name</th>
+            <th>Location</th>
+            <th>Vendor</th>
+            <th>Agent</th>
+            <th>Approved</th>
+            <th>Launch Date</th>
+            <th>RMP Plot Number</th>
+            <th>Legal Completion</th>
+            <th>Links</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="development in vm.developments">
+            <td>{{development.name}}</td>
+            <td>{{development.location}}</td>
+            <td>{{development.vendor}}</td>
+            <td>{{development.agent}}</td>
+            <td>{{development.approved}}</td>
+            <td>{{development.launchDate}}</td>
+            <td>{{development.plotNumber}}</td>
+            <td>{{development.legalCompletion}}</td>
+            <td><a ng-href="/#!/development"><i class="fa fa-info-circle"></i> </a><a ng-href="/#!/files"><i class="fa fa-file-pdf-o"></i></a> </a><a ng-href="/#!/plot-allocation"><i class="fa fa-user"></i></a></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

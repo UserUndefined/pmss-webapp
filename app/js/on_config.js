@@ -24,11 +24,17 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider, $compil
       title: 'Test'
     })
     .state('Development', {
-    url: '/development',
-    controller: 'DevelopmentController as development',
-    templateUrl: 'development.html',
-    title: 'Development'
-  });
+      url: '/development',
+      controller: 'DevelopmentController as development',
+      templateUrl: 'development.html',
+      title: 'Development'
+    })
+    .state('Developments', {
+      url: '/developments',
+      controller: 'DevelopmentsController as vm',
+      templateUrl: 'developments.html',
+      title: 'Developments'
+    });
 
   $urlRouterProvider.otherwise('/');
 
