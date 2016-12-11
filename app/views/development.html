@@ -7,24 +7,9 @@
     </div>
     <div class="row">
       <div class="dashboard">
-        <div id="exTab2">
-          <ul class="nav nav-tabs ">
-            <li class="active">
-              <a  href="#1" data-toggle="tab">Development Sourcing Step 1</a>
-            </li>
-            <li>
-              <a href="#2" data-toggle="tab">Development Sourcing Step 2</a>
-            </li>
-            <li>
-              <a href="#3" data-toggle="tab">Plot List</a>
-            </li>
-            <li>
-              <a href="#4" data-toggle="tab">Big 50</a>
-            </li>
-          </ul>
-
-          <div class="tab-content ">
-            <div class="tab-pane active" id="1">
+        <uib-tabset active="activeJustified" justified="true">
+          <uib-tab index="0" heading="Sourcing Step 1">
+            <div class="uib-tab-content">
               <form style="padding-top: 20px">
                 <div class="row">
                   <div class="col-sm-6">
@@ -187,7 +172,9 @@
                 </div>
               </form>
             </div>
-            <div class="tab-pane" id="2">
+          </uib-tab>
+          <uib-tab index="1" heading="Sourcing Step 2">
+            <div class="uib-tab-content">
               <form style="padding-top: 20px">
                 <div class="form-group">
                   <label for="devSiteSold">Percentage of site sold to investors:</label>
@@ -239,7 +226,9 @@
                 </div>
               </form>
             </div>
-            <div class="tab-pane" id="3">
+          </uib-tab>
+          <uib-tab index="2" heading="Plot List">
+            <div class="uib-tab-content">
               <div class="row">
                 <table class="table">
                   <thead>
@@ -354,7 +343,9 @@
                 <a href="plot.html"><i class="fa fa-plus-circle"></i>Add New Plot</a>
               </div>
             </div>
-            <div class="tab-pane" id="4">
+          </uib-tab>
+          <uib-tab index="3" heading="Big 50">
+            <div class="uib-tab-content">
               <form style="padding-top: 20px">
                 <div class="form-group">
                   <label for="plotInvOverview">Investment Overview:</label>
@@ -385,21 +376,22 @@
               </form>
             </div>
           </div>
+          </uib-tab>
+        </uib-tabset>
+      </div>
+      <br/>
+      <div class="row">
+        <button type="submit" class="btn btn-primary btn-block">Save</button>
+      </div>
+      <br/>
+      <div class="row">
+        <div class="col-xs-4">
+          <button type="submit" class="btn btn-primary btn-block">Submit Phase I For Review</button>
         </div>
-      </div>
-    </div>
-    <br/>
-    <div class="row">
-      <button type="submit" class="btn btn-primary btn-block">Save</button>
-    </div>
-    <br/>
-    <div class="row">
-      <div class="col-xs-4">
-        <button type="submit" class="btn btn-primary btn-block">Submit Phase I For Review</button>
-      </div>
-      <div class="col-xs-4"></div>
-      <div class="col-xs-4">
-        <button type="submit" class="btn btn-primary btn-block">Submit Phase 2 For Review</button>
+        <div class="col-xs-4"></div>
+        <div class="col-xs-4">
+          <button type="submit" class="btn btn-primary btn-block">Submit Phase 2 For Review</button>
+        </div>
       </div>
     </div>
   </div>
