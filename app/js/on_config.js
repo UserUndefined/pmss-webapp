@@ -17,6 +17,12 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider, $compil
       templateUrl: 'home.html',
       title: 'Home'
     })
+    .state('Login', {
+      url: '/login',
+      controller: 'LoginController as vm',
+      templateUrl: 'login.html',
+      title: 'Login'
+    })
     .state('Test', {
       url: '/test',
       controller: 'TestController as test',
