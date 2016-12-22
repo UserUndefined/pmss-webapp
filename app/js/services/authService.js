@@ -1,4 +1,4 @@
-function AuthService() {
+function AuthService(SessionService) {
   'ngInject';
 
   const poolData = {
@@ -26,8 +26,8 @@ function AuthService() {
     const authenticationDetails = new AWSCognito.CognitoIdentityServiceProvider.AuthenticationDetails(authenticationData);
     cognitoUser.authenticateUser(authenticationDetails, {
       onSuccess: function (result) {
-        console.log('idToken + ' + result.idToken.jwtToken);
         const token = result.idToken.jwtToken;
+        SessionService.create(token, username, 'admin');
         localStorage.setItem('token', token);
         return callback(null, '');
       },
@@ -51,6 +51,18 @@ function AuthService() {
       //return !jwtHelper.isTokenExpired(userToken);
       return true;
     }
+  };
+
+  service.isAuthenticated = function () {
+    return !!SessionService.userId;
+  };
+
+  service.isAuthorized = function (authorizedRoles) {
+    if (!angular.isArray(authorizedRoles)) {
+      authorizedRoles = [authorizedRoles];
+    }
+    return (authService.isAuthenticated() &&
+    authorizedRoles.indexOf(SessionService.userRole) !== -1);
   };
 
   service.getUserFromToken = function() {

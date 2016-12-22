@@ -1,4 +1,4 @@
-function LoginController($scope, AuthService, $location) {
+function LoginController($scope, $rootScope, AuthService, $location, AppSettings) {
   'ngInject';
 
   // ViewModel
@@ -16,8 +16,9 @@ function LoginController($scope, AuthService, $location) {
   function login(user) {
     AuthService.login(user.username, user.password, function(err){
       if(err){
-        //remain here
+        $rootScope.$broadcast(AppSettings.AUTH_EVENTS.loginFailed);
       } else {
+        $rootScope.$broadcast(AppSettings.AUTH_EVENTS.loginSuccess);
         $location.path('/');
         $scope.$apply();
       }
