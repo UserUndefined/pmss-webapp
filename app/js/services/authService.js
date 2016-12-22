@@ -1,48 +1,63 @@
-function AuthService($localStorage) {
+function AuthService() {
   'ngInject';
+
+  const poolData = {
+    UserPoolId: 'eu-west-1_5MHtkIKtT',
+    ClientId: '2mg368usdh6ql5463cqtoratfp'
+  };
+  var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
+  var userData = {
+    Username: 'testUser',
+    Pool: userPool
+  };
+  AWSCognito.config.region = 'eu-west-1';
+  // Need to provide placeholder keys unless unauthorised user access is enabled for user pool
+  AWSCognito.config.update({accessKeyId: 'anything', secretAccessKey: 'anything'});
+  var cognitoUser = new AWSCognito.CognitoIdentityServiceProvider.CognitoUser(userData);
 
   const service = {};
 
-  function urlBase64Decode(str) {
-    let output = str.replace('-', '+').replace('_', '/');
-    switch (output.length % 4) {
-      case 0:
-        break;
-      case 2:
-        output += '==';
-        break;
-      case 3:
-        output += '=';
-        break;
-      default:
-        throw 'Illegal base64url string!';
-    }
-    return window.atob(output);
-  }
+  service.login = function(username, password, callback) {
+    console.log('login called');
+    const authenticationData = {
+      Username: username,
+      Password: password
+    };
+    const authenticationDetails = new AWSCognito.CognitoIdentityServiceProvider.AuthenticationDetails(authenticationData);
+    cognitoUser.authenticateUser(authenticationDetails, {
+      onSuccess: function (result) {
+        console.log('idToken + ' + result.idToken.jwtToken);
+        const token = result.idToken.jwtToken;
+        localStorage.setItem('token', token);
+        return callback(null, '');
+      },
 
-  service.login = function(callback) {
-    $localStorage.token = 'ABCDEFG12345';
-    return callback(null, '');
-    //return new Promise((resolve, reject) => {
-      //$http.get('apiPath').success((data) => {
-      //  resolve(data);
-      //}).error((err, status) => {
-      //  reject(err, status);
-      //});
-    //});
+      onFailure: function (err) {
+        alert(err);
+        return callback(err);
+      }
+    });
   };
 
   service.logout = function() {
-    delete $localStorage.token;
-    return;
+    localStorage.removeItem('token');
+  };
+
+  service.hasValidToken = function() {
+    const userToken = localStorage.getItem('token');
+    if (!userToken) {
+      return false;
+    } else {
+      //return !jwtHelper.isTokenExpired(userToken);
+      return true;
+    }
   };
 
   service.getUserFromToken = function() {
-    let token = $localStorage.token;
+    let token = localStorage.getItem('token');
     let user = {};
     if (typeof token !== 'undefined') {
-      let encoded = token.split('.')[1];
-      user = JSON.parse(urlBase64Decode(encoded));
+      user = 'testUser';
     }
     return user;
   };

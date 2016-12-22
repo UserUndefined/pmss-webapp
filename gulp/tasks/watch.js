@@ -11,5 +11,6 @@ gulp.task('watch', ['browserSync'], function() {
   gulp.watch(config.images.src,  ['images']);
   gulp.watch(config.fonts.src,   ['fonts']);
   gulp.watch(config.views.watch, ['views']);
+  gulp.watch(config.vendor.watch, ['vendor']);
 
 });

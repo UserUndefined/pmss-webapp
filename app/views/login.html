@@ -5,13 +5,13 @@
         <h1>Login</h1>
         <form>
           <div class="form-group">
-            <label for="exampleInputUsername1">Username</label>
-            <input type="email" class="form-control" id="exampleInputUsername1" aria-describedby="emailHelp" placeholder="Enter username" value="">
+            <label for="userUsername">Username</label>
+            <input type="text" class="form-control" id="userUsername" aria-describedby="emailHelp" placeholder="Enter username"  ng-model="user.username">
             <small id="emailHelp" class="form-text text-muted">Username provided to you by your administrator.</small>
           </div>
           <div class="form-group">
             <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" value="password">
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" ng-model="user.password">
           </div>
           <div class="form-check">
             <label class="form-check-label">

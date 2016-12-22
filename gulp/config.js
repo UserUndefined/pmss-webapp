@@ -26,6 +26,11 @@ export default {
     dest: 'build/images'
   },
 
+  vendor: {
+    src: 'app/vendor/**/*',
+    dest: 'build/vendor'
+  },
+
   fonts: {
     src: ['app/fonts/**/*'],
     dest: 'build/fonts'

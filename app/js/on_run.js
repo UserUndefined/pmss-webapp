@@ -1,5 +1,5 @@
 //function OnRun($rootScope, AppSettings, $location) {
-function OnRun($rootScope, AppSettings) {
+function OnRun($rootScope, AppSettings, $location) {
   'ngInject';
 
   //$rootScope.$on('$locationChangeStart', function (event, next, current) {
@@ -23,6 +23,18 @@ function OnRun($rootScope, AppSettings) {
     }
 
     $rootScope.pageTitle += AppSettings.appTitle;
+  });
+
+  $rootScope.$on('$locationChangeStart', function (event, next, current) {
+    // redirect to login page if not logged in
+    console.log(current);
+    var restrictedPage = $location.path() !== '/login';
+    const userToken = localStorage.getItem('token');
+    if (restrictedPage && !userToken) {
+      $location.path('/login');
+    } else if (!restrictedPage && userToken){
+      $location.path('/');
+    }
   });
 
 }
