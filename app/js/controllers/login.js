@@ -4,14 +4,17 @@ function LoginController($scope, AuthService, $location) {
   // ViewModel
   const vm = this;
 
+  $scope.user = {
+    username: '',
+    password: ''
+  };
+
   function logout() {
     AuthService.logout();
-    console.log('logged out');
   }
 
-  function login() {
-    console.log('calling authService.login');
-    AuthService.login($scope.user.username, $scope.user.password, function(err){
+  function login(user) {
+    AuthService.login(user.username, user.password, function(err){
       if(err){
         //remain here
       } else {

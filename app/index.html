@@ -10,7 +10,7 @@
 
       <link rel="stylesheet" href="css/main.css">
   </head>
-  <body>
+  <body ng-class="{'login-body': $scope.userStatus !== 'LoggedOut'}">
     <navbar></navbar>
       <div ui-view></div>
 
