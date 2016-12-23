@@ -1,12 +1,11 @@
 function ApplicationController($scope, AppSettings, AuthService) {
   'ngInject';
 
-  // ViewModel
-  //const vm = this;
-
   $scope.currentUser = null;
   $scope.userRoles = AppSettings.USER_ROLES;
-  $scope.isAuthorized = AuthService.isAuthorized;
+  $scope.isAuthorized = AuthService.isAuthorized(AppSettings.USER_ROLES.all);
+  $scope.userStatus = {isAuthenticated: AuthService.isAuthenticated()};
+  $scope.currentPage = {isLoginPage: true};
 
   $scope.setCurrentUser = function (user) {
     $scope.currentUser = user;

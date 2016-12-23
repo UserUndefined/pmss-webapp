@@ -1,11 +1,10 @@
-function NavbarController(AuthService, $location) {
+function NavbarController($location) {
 'ngInject';
 
   // ViewModel
   const vm = this;
 
   vm.signOut = function(){
-    AuthService.logout();
     $location.path('/login');
   };
 

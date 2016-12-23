@@ -1,4 +1,4 @@
-function LoginController($scope, $rootScope, AuthService, $location, AppSettings) {
+function LoginController($scope, AuthService, $location) {
   'ngInject';
 
   // ViewModel
@@ -9,21 +9,31 @@ function LoginController($scope, $rootScope, AuthService, $location, AppSettings
     password: ''
   };
 
-  function logout() {
+  function initialize(){
+    //Always logout if we end up here
+    logout();
+    $scope.currentPage.isLoginPage = true;
+  }
+
+  function logout(){
     AuthService.logout();
+    $scope.userStatus.isAuthenticated = false;
   }
 
   function login(user) {
     AuthService.login(user.username, user.password, function(err){
       if(err){
-        $rootScope.$broadcast(AppSettings.AUTH_EVENTS.loginFailed);
+        //ToDo: display toast
       } else {
-        $rootScope.$broadcast(AppSettings.AUTH_EVENTS.loginSuccess);
         $location.path('/');
+        $scope.currentPage.isLoginPage = false;
+        $scope.userStatus.isAuthenticated = true;
         $scope.$apply();
       }
     });
   }
+
+  initialize();
 
   vm.login = login;
   vm.logout = logout;

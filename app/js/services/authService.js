@@ -1,4 +1,4 @@
-function AuthService(SessionService) {
+function AuthService(SessionService, AppSettings, $rootScope) {
   'ngInject';
 
   const poolData = {
@@ -18,7 +18,6 @@ function AuthService(SessionService) {
   const service = {};
 
   service.login = function(username, password, callback) {
-    console.log('login called');
     const authenticationData = {
       Username: username,
       Password: password
@@ -29,11 +28,11 @@ function AuthService(SessionService) {
         const token = result.idToken.jwtToken;
         SessionService.create(token, username, 'admin');
         localStorage.setItem('token', token);
+        $rootScope.$broadcast(AppSettings.AUTH_EVENTS.loginSuccess);
         return callback(null, '');
       },
-
       onFailure: function (err) {
-        alert(err);
+        $rootScope.$broadcast(AppSettings.AUTH_EVENTS.loginFailed);
         return callback(err);
       }
     });
@@ -41,6 +40,8 @@ function AuthService(SessionService) {
 
   service.logout = function() {
     localStorage.removeItem('token');
+    SessionService.destroy();
+    $rootScope.$broadcast(AppSettings.AUTH_EVENTS.notAuthenticated);
   };
 
   service.hasValidToken = function() {
@@ -61,8 +62,7 @@ function AuthService(SessionService) {
     if (!angular.isArray(authorizedRoles)) {
       authorizedRoles = [authorizedRoles];
     }
-    return (authService.isAuthenticated() &&
-    authorizedRoles.indexOf(SessionService.userRole) !== -1);
+    return (this.isAuthenticated() && authorizedRoles.indexOf(SessionService.userRole) !== -1);
   };
 
   service.getUserFromToken = function() {
