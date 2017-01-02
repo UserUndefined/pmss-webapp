@@ -1,11 +1,22 @@
-function DevelopmentsController() {
+function DevelopmentsController(DataService) {
+  'ngInject';
 
   // ViewModel
   var vm = this;
 
   vm.test = 'test';
 
-  vm.developments = [
+  function initialize(){
+    DataService.getDevelopments(function(err, data){
+      if (err){
+        vm.developments = [];
+      } else {
+        vm.developments = data;
+      }
+    });
+  }
+
+/*  vm.developments = [
     {
       name: 'Example House',
       location: 'Leeds',
@@ -56,7 +67,9 @@ function DevelopmentsController() {
       plotNumber: '10',
       legalCompletion: 'N'
     }
-  ];
+  ];*/
+
+  initialize();
 
 }
 

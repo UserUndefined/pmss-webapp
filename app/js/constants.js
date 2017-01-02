@@ -1,6 +1,6 @@
 export const AppSettings = {
   appTitle: 'PMSS Web App',
-  apiUrl: '/api/v1',
+  apiUrl: 'https://rcpirn9bwd.execute-api.eu-west-1.amazonaws.com/prod',
   USER_ROLES: {
     all: '*',
     admin: 'admin'
