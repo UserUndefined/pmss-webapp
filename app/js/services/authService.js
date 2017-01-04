@@ -6,6 +6,10 @@ function AuthService(SessionService, AppSettings, $rootScope, jwtHelper) {
     ClientId: AppSettings.IDENTITY.clientId
   };
 
+  //var cognito = new AWS.CognitoIdentityServiceProvider();
+  //cognito.config.region = AppSettings.IDENTITY.awsRegion;
+  //cognito.config.update({accessKeyId: 'anything', secretAccessKey: 'anything'});
+
   AWSCognito.config.region = AppSettings.IDENTITY.awsRegion;
   // Need to provide placeholder keys unless unauthorised user access is enabled for user pool
   AWSCognito.config.update({accessKeyId: 'anything', secretAccessKey: 'anything'});
@@ -18,13 +22,16 @@ function AuthService(SessionService, AppSettings, $rootScope, jwtHelper) {
       Password: password
     };
     const authenticationDetails = new AWSCognito.CognitoIdentityServiceProvider.AuthenticationDetails(authenticationData);
+    //cognito.AuthenticationDetails = authenticationData;
 
     const userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
+    //const userPool = new AWSCognitoIdentityService  .CognitoUserPool(poolData);
     const userData = {
       Username: username,
       Pool: userPool
     };
     const cognitoUser = new AWSCognito.CognitoIdentityServiceProvider.CognitoUser(userData);
+    //const cognitoUser = new cognito.CognitoIdentityServiceProvider.CognitoUser(userData);
 
     cognitoUser.authenticateUser(authenticationDetails, {
       onSuccess: function (result) {

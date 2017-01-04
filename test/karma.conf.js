@@ -41,6 +41,14 @@ const karmaBaseConfig = {
   urlRoot: '/__karma__/',
 
   files: [
+
+    'app/vendor/jsbn.js',
+    'app/vendor/jsbn2.js',
+    'app/vendor/sjcl.js',
+    'app/vendor/moment.min.js',
+    'app/vendor/aws-cognito-sdk.min.js',
+    'app/vendor/amazon-cognito-identity.min.js',
+
     // app-specific code
     'app/js/main.js',
 
@@ -51,7 +59,7 @@ const karmaBaseConfig = {
     'test/unit/**/*.js'
   ]
 
-};
+  };
 
 const customLaunchers = {
   chrome: {

@@ -2,6 +2,7 @@ import angular from 'angular';
 require ('angular-jwt');
 require ('angular-animate');
 require ('angularjs-toaster');
+require ('aws-sdk');
 
 // angular modules
 import constants from './constants';
