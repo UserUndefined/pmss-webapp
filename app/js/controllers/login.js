@@ -1,4 +1,4 @@
-function LoginController($scope, AuthService, $location) {
+function LoginController($scope, $timeout, AuthService, $location, toaster) {
   'ngInject';
 
   // ViewModel
@@ -23,7 +23,9 @@ function LoginController($scope, AuthService, $location) {
   function login(user) {
     AuthService.login(user.username, user.password, function(err){
       if(err){
-        //ToDo: display toast
+        $timeout(function () {
+          toaster.pop({type: 'error', title: 'Error', body: 'Invalid Logon', timeout: 3000});
+        }, 0);
       } else {
         $location.path('/');
         $scope.currentPage.isLoginPage = false;

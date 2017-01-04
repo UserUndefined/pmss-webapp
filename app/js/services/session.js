@@ -3,16 +3,24 @@ function SessionService() {
 
    const service = {};
 
-  service.create = function (sessionId, userId, userRole) {
-    this.id = sessionId;
-    this.userId = userId;
+  service.create = function (sessionId, userName, userRole) {
+    this.sessionId = sessionId;
+    this.userName = userName;
     this.userRole = userRole;
   };
 
   service.destroy = function () {
-    this.id = null;
-    this.userId = null;
+    this.sessionId = null;
+    this.userName = null;
     this.userRole = null;
+  };
+
+  service.getUser = function () {
+    return {
+      sessionId: this.sessionId,
+      userName: this.userName,
+      userRole: this.userRole
+    }
   };
 
   return service;

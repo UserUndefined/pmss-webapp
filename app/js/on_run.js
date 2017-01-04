@@ -1,4 +1,4 @@
-function OnRun($rootScope, AppSettings, $location) {
+function OnRun($rootScope, AppSettings, $location, AuthService) {
   'ngInject';
 
   // change page title based on state
@@ -13,15 +13,14 @@ function OnRun($rootScope, AppSettings, $location) {
     $rootScope.pageTitle += AppSettings.appTitle;
   });
 
-  $rootScope.$on('$locationChangeStart', function (event, next, current) {
+  $rootScope.$on('$locationChangeStart', function () {
     // redirect to login page if not logged in
-    console.log(current);
     //var restrictedPage = $location.path() !== '/login';
     var restrictedPage = $location.path() !== '/testpage';
-    const userToken = localStorage.getItem('token');
-    if (restrictedPage && !userToken) {
+    const userAuthenticated = AuthService.isAuthenticated();
+    if (restrictedPage && !userAuthenticated) {
       $location.path('/login');
-    } else if (!restrictedPage && userToken){
+    } else if (!restrictedPage && userAuthenticated){
       $location.path('/');
     }
   });

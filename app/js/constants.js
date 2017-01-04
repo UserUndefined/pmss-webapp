@@ -5,6 +5,11 @@ export const AppSettings = {
     all: '*',
     admin: 'admin'
   },
+  IDENTITY: {
+    poolId: 'eu-west-1_5MHtkIKtT',
+    clientId: '2mg368usdh6ql5463cqtoratfp',
+    awsRegion: 'eu-west-1'
+  },
   AUTH_EVENTS: {
     loginSuccess: 'auth-login-success',
     loginFailed: 'auth-login-failed',

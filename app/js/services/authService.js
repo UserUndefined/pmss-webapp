@@ -1,19 +1,14 @@
-function AuthService(SessionService, AppSettings, $rootScope) {
+function AuthService(SessionService, AppSettings, $rootScope, jwtHelper) {
   'ngInject';
 
   const poolData = {
-    UserPoolId: 'eu-west-1_5MHtkIKtT',
-    ClientId: '2mg368usdh6ql5463cqtoratfp'
+    UserPoolId: AppSettings.IDENTITY.poolId,
+    ClientId: AppSettings.IDENTITY.clientId
   };
-  var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
-  var userData = {
-    Username: 'testUser',
-    Pool: userPool
-  };
-  AWSCognito.config.region = 'eu-west-1';
+
+  AWSCognito.config.region = AppSettings.IDENTITY.awsRegion;
   // Need to provide placeholder keys unless unauthorised user access is enabled for user pool
   AWSCognito.config.update({accessKeyId: 'anything', secretAccessKey: 'anything'});
-  var cognitoUser = new AWSCognito.CognitoIdentityServiceProvider.CognitoUser(userData);
 
   const service = {};
 
@@ -23,11 +18,19 @@ function AuthService(SessionService, AppSettings, $rootScope) {
       Password: password
     };
     const authenticationDetails = new AWSCognito.CognitoIdentityServiceProvider.AuthenticationDetails(authenticationData);
+
+    const userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
+    const userData = {
+      Username: username,
+      Pool: userPool
+    };
+    const cognitoUser = new AWSCognito.CognitoIdentityServiceProvider.CognitoUser(userData);
+
     cognitoUser.authenticateUser(authenticationDetails, {
       onSuccess: function (result) {
         const token = result.idToken.jwtToken;
         SessionService.create(token, username, 'admin');
-        localStorage.setItem('token', token);
+        localStorage.setItem('pmssUser', JSON.stringify(SessionService.getUser()));
         $rootScope.$broadcast(AppSettings.AUTH_EVENTS.loginSuccess);
         return callback(null, '');
       },
@@ -39,23 +42,22 @@ function AuthService(SessionService, AppSettings, $rootScope) {
   };
 
   service.logout = function() {
-    localStorage.removeItem('token');
+    localStorage.removeItem('pmssUser');
     SessionService.destroy();
     $rootScope.$broadcast(AppSettings.AUTH_EVENTS.notAuthenticated);
   };
 
   service.hasValidToken = function() {
-    const userToken = localStorage.getItem('token');
-    if (!userToken) {
+    const sessionId = SessionService.sessionId;
+    if (!sessionId) {
       return false;
     } else {
-      //return !jwtHelper.isTokenExpired(userToken);
-      return true;
+      return !jwtHelper.isTokenExpired(sessionId);
     }
   };
 
   service.isAuthenticated = function () {
-    return !!SessionService.userId;
+    return this.hasValidToken();
   };
 
   service.isAuthorized = function (authorizedRoles) {
@@ -65,13 +67,13 @@ function AuthService(SessionService, AppSettings, $rootScope) {
     return (this.isAuthenticated() && authorizedRoles.indexOf(SessionService.userRole) !== -1);
   };
 
-  service.getUserFromToken = function() {
-    let token = localStorage.getItem('token');
-    let user = {};
-    if (typeof token !== 'undefined') {
-      user = 'testUser';
+  service.setCurrentUser = function() {
+    let user = JSON.parse(localStorage.getItem('pmssUser'));
+    if (!user) {
+      SessionService.create('', '', '');
+    } else {
+      SessionService.create(user.sessionId, user.userName, 'admin');
     }
-    return user;
   };
 
   return service;

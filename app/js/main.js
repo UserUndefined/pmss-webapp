@@ -1,4 +1,7 @@
 import angular from 'angular';
+require ('angular-jwt');
+require ('angular-animate');
+require ('angularjs-toaster');
 
 // angular modules
 import constants from './constants';
@@ -22,7 +25,9 @@ const requires = [
   'app.controllers',
   'app.services',
   'app.directives',
-  'ngStorage'
+  'ngStorage',
+  'angular-jwt',
+  'toaster'
 ];
 
 // mount on window for testing
