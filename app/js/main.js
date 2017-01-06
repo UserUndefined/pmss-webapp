@@ -1,6 +1,8 @@
 import angular from 'angular';
 require ('angular-jwt');
 require ('angular-animate');
+require ('angular-aria');
+require ('angular-material');
 require ('angularjs-toaster');
 require ('aws-sdk');
 
@@ -9,7 +11,6 @@ import constants from './constants';
 import onConfig  from './on_config';
 import onRun     from './on_run';
 import 'angular-ui-router';
-import 'angular-ui-bootstrap';
 import 'ngstorage';
 import './templates';
 import './filters';
@@ -20,7 +21,6 @@ import './directives';
 // create and bootstrap application
 const requires = [
   'ui.router',
-  'ui.bootstrap',
   'templates',
   'app.filters',
   'app.controllers',
@@ -28,7 +28,8 @@ const requires = [
   'app.directives',
   'ngStorage',
   'angular-jwt',
-  'toaster'
+  'toaster',
+  'ngMaterial'
 ];
 
 // mount on window for testing

@@ -1,14 +1,13 @@
 describe('Unit: ExampleService', function() {
 
-  let http, service;
+  let service;
 
   beforeEach(function() {
     // instantiate the app module
     angular.mock.module('app');
 
     // mock the service
-    angular.mock.inject(($httpBackend, ExampleService) => {
-      http = $httpBackend;
+    angular.mock.inject((ExampleService) => {
       service = ExampleService;
     });
   });

@@ -1,45 +1,62 @@
-<section>
-  <div class="container">
-    <div class="row">
-      <div class="dashboard">
-        <h1>Test User - Dashboard</h1>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-4">
-        <div class="card card-block">
-          <img class="card-img-top" src="images/developments.png" alt="Developments"  style="max-height: 100px;">
-          <div class="card-block">
-            <a ng-href="developments" class="btn btn-primary"><h4 class="card-title">Developments</h4></a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-4">
-        <div class="card card-block">
-          <img class="card-img-top" src="images/new-development.png" alt="Development"  style="max-height: 100px;">
-          <div class="card-block">
-            <a ng-href="development" class="btn btn-primary"><h4 class="card-title">New Development</h4></a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-4">
-        <div class="card card-block">
-          <img class="card-img-top" src="images/kpi-dashboard.jpg" alt="KPI Dashboard"  style="max-height: 100px;">
-          <div class="card-block">
-            <a ng-href="https://reports.zoho.com/ZDBDataSheetView.cc?OBJID=1210336000000010275&STANDALONE=true&privatelink=604410cff4c6b6a457944526a07d34c7&INTERVAL=-1&REMTOOLBAR=true&INCLUDETITLE=false&INCLUDEDESC=false" class="btn btn-primary" target="_blank"><h4 class="card-title">KPI Dashboard</h4></a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row" style="padding-top: 50px">
-      <div class="col-sm-4">
-        <div class="card card-block">
-          <img class="card-img-top" src="images/report-priority.jpg" alt="Daily Priority Report"  style="max-height: 100px;">
-          <div class="card-block">
-            <a ng-href="https://reports.zoho.com/ZDBDataSheetView.cc?OBJID=1210336000000010568&STANDALONE=true&privatelink=424139fb7779020a2ba7df3f22a9cda2&INTERVAL=-1&REMTOOLBAR=true&INCLUDETITLE=true&INCLUDEDESC=false" class="btn btn-primary" target="_blank"><h4 class="card-title">Daily Priority Report</h4></a>
-          </div>
-        </div>
-      </div>
-    </div>
+<md-content class="md-padding" layout-xs="column" layout="row">
+  <div flex-xs flex-gt-xs="50" layout="column">
+    <md-card>
+      <img ng-src="images/developments.png" class="md-card-image" alt="Washed Out">
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">Developments</span>
+        </md-card-title-text>
+        <md-card-title-media>
+          <div class="md-media-lg card-media"></div>
+        </md-card-title-media>
+      </md-card-title>
+      <md-card-actions layout="row" layout-align="end center">
+        <md-button ng-href="developments">Developments</md-button>
+      </md-card-actions>
+    </md-card>
+    <md-card>
+      <img ng-src="images/new-development.png" class="md-card-image" alt="Washed Out">
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">New Development</span>
+        </md-card-title-text>
+        <md-card-title-media>
+          <div class="md-media-lg card-media"></div>
+        </md-card-title-media>
+      </md-card-title>
+      <md-card-actions layout="row" layout-align="end center">
+        <md-button ng-href="development">New Development</md-button>
+      </md-card-actions>
+    </md-card>
   </div>
-</section>
+  <div flex-xs flex-gt-xs="50" layout="column">
+    <md-card>
+      <img ng-src="images/kpi-dashboard.jpg" class="md-card-image" alt="Washed Out">
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">KPI Dashboard</span>
+        </md-card-title-text>
+        <md-card-title-media>
+          <div class="md-media-lg card-media"></div>
+        </md-card-title-media>
+      </md-card-title>
+      <md-card-actions layout="row" layout-align="end center">
+        <md-button ng-href="https://reports.zoho.com/ZDBDataSheetView.cc?OBJID=1210336000000010275&STANDALONE=true&privatelink=604410cff4c6b6a457944526a07d34c7&INTERVAL=-1&REMTOOLBAR=true&INCLUDETITLE=false&INCLUDEDESC=false">KPI Dashboard</md-button>
+      </md-card-actions>
+    </md-card>
+    <md-card>
+      <img ng-src="images/report-priority.jpg" class="md-card-image" alt="Washed Out">
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">Daily Priority Report</span>
+        </md-card-title-text>
+        <md-card-title-media>
+          <div class="md-media-lg card-media"></div>
+        </md-card-title-media>
+      </md-card-title>
+      <md-card-actions layout="row" layout-align="end center">
+        <md-button ng-href="https://reports.zoho.com/ZDBDataSheetView.cc?OBJID=1210336000000010568&STANDALONE=true&privatelink=424139fb7779020a2ba7df3f22a9cda2&INTERVAL=-1&REMTOOLBAR=true&INCLUDETITLE=true&INCLUDEDESC=false">Daily Priority Report</md-button>
+      </md-card-actions>
+    </md-card>
+  </div>
+</md-content>

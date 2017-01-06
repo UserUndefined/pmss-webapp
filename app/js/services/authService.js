@@ -59,7 +59,13 @@ function AuthService(SessionService, AppSettings, $rootScope, jwtHelper) {
     if (!sessionId) {
       return false;
     } else {
-      return !jwtHelper.isTokenExpired(sessionId);
+      var tokenExpired = true;
+      try{
+        tokenExpired = !jwtHelper.isTokenExpired(sessionId);
+      } catch(err) {
+        this.logout();
+      }
+      return tokenExpired;
     }
   };
 
