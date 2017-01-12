@@ -17,6 +17,9 @@ export const AppSettings = {
     sessionTimeout: 'auth-session-timeout',
     notAuthenticated: 'auth-not-authenticated',
     notAuthorized: 'auth-not-authorized'
+  },
+  APP_EVENTS: {
+    completeDevelopmentFilter: 'completeDevelopmentFilter'
   }
 };
 

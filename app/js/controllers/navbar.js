@@ -1,8 +1,12 @@
-function NavbarController($location, $mdSidenav, $mdUtil) {
+function NavbarController($scope, $location, $mdSidenav, $mdUtil) {
 'ngInject';
 
   // ViewModel
   const vm = this;
+
+  function initialise(){
+    $scope.location = $location;
+  }
 
   vm.signOut = function(){
     $location.path('/login');
@@ -24,6 +28,8 @@ function NavbarController($location, $mdSidenav, $mdUtil) {
     }, 100);
     return debounceFn;
   }
+
+  initialise();
 
 }
 
