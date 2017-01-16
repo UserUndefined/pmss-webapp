@@ -3,35 +3,39 @@
     <div class="row">
       <div class="dashboard">
         <h1>Developments</h1>
-        <table class="table">
-          <thead>
-          <tr>
-            <th>Development Name</th>
-            <th>Location</th>
-            <th>Vendor</th>
-            <th>Agent</th>
-            <th>Approved</th>
-            <th>Launch Date</th>
-            <th>RMP Plot Number</th>
-            <th>Legal Completion</th>
-            <th>Links</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr ng-repeat="development in vm.developments">
-            <td>{{development.name}}</td>
-            <td>{{development.location}}</td>
-            <td>{{development.vendor}}</td>
-            <td>{{development.agent}}</td>
-            <td>{{development.approved}}</td>
-            <td>{{development.launchDate}}</td>
-            <td>{{development.plotNumber}}</td>
-            <td>{{development.legalCompletion}}</td>
-            <td><a ng-href="/#!/development"><i class="fa fa-info-circle"></i> </a><a ng-href="/#!/files"><i class="fa fa-file-pdf-o"></i></a> </a><a ng-href="/#!/plot-allocation"><i class="fa fa-user"></i></a></td>
-          </tr>
-          </tbody>
-        </table>
       </div>
     </div>
+    <div class="row"
+    <md-table-container>
+      <table md-table md-row-select multiple ng-model="vm.selected" md-progress="vm.promise">
+        <thead md-head md-order="vm.query.order" md-on-reorder="vm.getData">
+        <tr md-row>
+          <th md-column><span>Development</span></th>
+          <th md-column><span>Location</span></th>
+          <th md-column>Vendor</th>
+          <th md-column>Agent</th>
+          <th md-column>Approved</th>
+          <th md-column>Launch Date</th>
+          <th md-column>RMP Plot Number</th>
+          <th md-column>Legal Completion</th>
+        </tr>
+        </thead>
+        <tbody md-body>
+        <tr md-row md-select="development" md-select-id="name" md-auto-select ng-repeat="development in vm.developments track by $index">
+          <td md-cell>{{development.name}}</td>
+          <td md-cell>{{development.location}}</td>
+          <td md-cell>{{development.vendor}}</td>
+          <td md-cell>{{development.agent}}</td>
+          <td md-cell>{{development.approved}}</td>
+          <td md-cell>{{development.launchDate}}</td>
+          <td md-cell>{{development.plotNumber}}</td>
+          <td md-cell>{{development.legalCompletion}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </md-table-container>
+
+    <md-table-pagination md-limit="vm.query.limit" md-limit-options="[5, 10, 15]" md-page="vm.query.page" md-total="{{vm.developments.count}}" md-on-paginate="vm.getData" md-page-select></md-table-pagination>
+  </div>
   </div>
 </section>

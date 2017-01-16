@@ -5,6 +5,7 @@ function DevelopmentsController(DataService, $scope, AppSettings) {
   var vm = this;
 
   function initialize(){
+    vm.selected = [];
     DataService.getDevelopments(function(err, data){
       if (err){
         vm.developments = [];
@@ -13,6 +14,29 @@ function DevelopmentsController(DataService, $scope, AppSettings) {
       }
     });
   }
+
+  vm.query = {
+    order: 'name',
+    limit: 5,
+    page: 1
+  };
+
+  vm.getData = function () {
+    vm.promise = getDataPromise;
+  };
+
+  const getDataPromise = new Promise(function(resolve) {
+    //DataService.getDevelopments(function(err, data){
+    //  if (err){
+    //    vm.developments = [];
+    //    reject(Error('It broke'));
+    //  } else {
+    //    vm.developments = data;
+    //    resolve('Stuff worked!');
+    //  }
+    //});
+    resolve('Stuff worked!');
+  });
 
   function filterCompleteDevelopments(){
     console.log('filterCompleteDevelopments called');

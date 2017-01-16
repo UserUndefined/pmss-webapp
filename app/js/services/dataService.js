@@ -14,14 +14,14 @@ function DataService($http, AppSettings, SessionService) {
       requestUrl = requestUrl + '&' + key + '=' + value;
     });
     $http({
-      'url': requestUrl,
-      'method': 'GET',
-      'headers': {
+      method: 'GET',
+      url: requestUrl,
+      headers: {
         'Content-Type': 'application/json',
         'Authorization': SessionService.getUser().sessionId
       },
-      'cache': false
-    }).then(function(response){
+      cache: false
+    }).then(function (response) {
       return callback(null, response.data);
     }, function (response) {
       console.log(response);
