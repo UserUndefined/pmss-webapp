@@ -6,6 +6,7 @@ require ('angular-material');
 require ('angularjs-toaster');
 require ('aws-sdk');
 require ('angular-material-data-table');
+require ('angular-messages');
 
 // angular modules
 import constants from './constants';
@@ -31,7 +32,8 @@ const requires = [
   'angular-jwt',
   'toaster',
   'ngMaterial',
-  'md.data.table'
+  'md.data.table',
+  'ngMessages'
 ];
 
 // mount on window for testing

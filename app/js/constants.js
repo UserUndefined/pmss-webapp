@@ -6,7 +6,8 @@ export const AppSettings = {
     admin: 'admin'
   },
   IDENTITY: {
-    poolId: 'eu-west-1_5MHtkIKtT',
+    userPoolId: 'eu-west-1_5MHtkIKtT',
+    identityPoolId: '2d9fbafa-4753-41d8-8353-8b2f44675cf4',
     clientId: '2mg368usdh6ql5463cqtoratfp',
     awsRegion: 'eu-west-1'
   },
