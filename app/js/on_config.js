@@ -5,10 +5,10 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider, $compil
     $compileProvider.debugInfoEnabled(false);
   }
 
-  $locationProvider.html5Mode({
-    enabled: true,
-    requireBase: false
-  });
+  //$locationProvider.html5Mode({
+  //  enabled: true,
+  //  requireBase: false
+  //});
 
   $stateProvider
     .state('Home', {

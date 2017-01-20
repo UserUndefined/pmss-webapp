@@ -3,13 +3,21 @@
     <h1 class="md-toolbar-tools">Filters</h1>
   </md-toolbar>
   <md-content layout-margin>
+    <md-menu-content width="2">
+      <md-menu-item>
+        <md-button ng-click="vm.toggleLeft()" class="md-accent">Close</md-button>
+      </md-menu-item>
+      <md-menu-item>
+        <md-button ng-href="#/dashboard" class="md-accent">Dashboard</md-button>
+      </md-menu-item>
+      <md-menu-item>
+        <md-button ng-href="#/developments" class="md-accent">Developments</md-button>
+      </md-menu-item>
+      <md-menu-item>
+        <md-button ng-click="vm.signOut()" class="md-accent">Sign Out</md-button>
+      </md-menu-item>
+    </md-menu-content>
     <nav-developments ng-if="location.path() === '/developments'"></nav-developments>
-    <md-button ng-click="vm.toggleLeft()" class="md-accent">
-      Close
-    </md-button>
-    <md-button ng-click="vm.signOut()" class="md-accent">
-      Sign Out
-    </md-button>
   </md-content>
 </md-sidenav>
 <md-toolbar class="md-whiteframe-1dp">
