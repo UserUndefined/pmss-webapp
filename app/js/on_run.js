@@ -1,4 +1,4 @@
-function OnRun($rootScope, AppSettings, $location, AuthService) {
+function OnRun($rootScope, AppSettings, AuthService) {
   'ngInject';
 
   // change page title based on state
@@ -13,32 +13,18 @@ function OnRun($rootScope, AppSettings, $location, AuthService) {
     $rootScope.pageTitle += AppSettings.appTitle;
   });
 
-  $rootScope.$on('$locationChangeStart', function () {
-    // redirect to login page if not logged in
-    //var restrictedPage = $location.path() !== '/login';
-    var restrictedPage = $location.path() !== '/testpage';
-    const userAuthenticated = AuthService.isAuthenticated();
-    if (restrictedPage && !userAuthenticated) {
-      $location.path('/login');
-    } else if (!restrictedPage && userAuthenticated){
-      $location.path('/');
-    }
+  $rootScope.$on('$stateChangeStart', function (event, next) {
+    var authorizedRoles = next.data.authorizedRoles;
+    AuthService.checkUserSession(function(err){
+      if(err) {
+        event.preventDefault();
+        $rootScope.$broadcast(AppSettings.AUTH_EVENTS.notAuthenticated);
+      } else if (!AuthService.isAuthorized(authorizedRoles)) {
+        event.preventDefault();
+        $rootScope.$broadcast(AppSettings.AUTH_EVENTS.notAuthorized);
+      }
+    });
   });
-/*
- $rootScope.$on('$stateChangeStart', function (event, next) {
- var authorizedRoles = next.data.authorizedRoles;
- if (!AuthService.isAuthorized(authorizedRoles)) {
- event.preventDefault();
- if (AuthService.isAuthenticated()) {
- // user is not allowed
- $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
- } else {
- // user is not logged in
- $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
- }
- }
- });
- */
 }
 
 export default OnRun;

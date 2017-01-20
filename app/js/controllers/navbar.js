@@ -1,4 +1,4 @@
-function NavbarController($scope, $location, $mdSidenav, $mdUtil) {
+function NavbarController($rootScope, $scope, $location, $mdSidenav, $mdUtil, AppSettings) {
 'ngInject';
 
   // ViewModel
@@ -9,7 +9,7 @@ function NavbarController($scope, $location, $mdSidenav, $mdUtil) {
   }
 
   vm.signOut = function(){
-    $location.path('/login');
+    $rootScope.$broadcast(AppSettings.AUTH_EVENTS.logoutRequest);
   };
 
   vm.toggleLeft = buildToggler('left');

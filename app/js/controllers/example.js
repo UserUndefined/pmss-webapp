@@ -17,6 +17,26 @@ function ExampleCtrl(AuthService, $scope) {
     });
   }
 
+  $scope.refreshSession = function(){
+    AuthService.refreshSession(function(err){
+      if(err){
+        console.log(err);
+      } else {
+        console.log('it worked!');
+      }
+    });
+  }
+
+  $scope.getSession = function(){
+    AuthService.getSession(function(err){
+      if(err){
+        console.log(err);
+      } else {
+        console.log('it worked!');
+      }
+    });
+  }
+
 }
 
 export default {

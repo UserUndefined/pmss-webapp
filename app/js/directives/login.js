@@ -1,4 +1,4 @@
-function loginDialog($rootScope, AppSettings, AuthService) {
+function loginDialog(AuthService) {
 'ngInject';
 
   return {
@@ -8,30 +8,11 @@ function loginDialog($rootScope, AppSettings, AuthService) {
 
       scope.vm = this;
 
-      var showDialog = function () {
-        scope.visible = true;
-      };
-
-      var hideDialog = function () {
-        scope.visible = false;
-      };
-
       scope.vm.login = function(user) {
-        AuthService.login(user.username, user.password, function(err){
-          if(err){
-            $rootScope.$broadcast(AppSettings.AUTH_EVENTS.loginFailed);
-          } else {
-            scope.currentPage.isLoginPage = false;
-            scope.userStatus.isAuthenticated = true;
-            scope.$apply();
-          }
-        });
+        AuthService.login(user.username, user.password, function(){});
       };
 
-      scope.visible = false;
-      scope.$on(AppSettings.AUTH_EVENTS.notAuthenticated, showDialog);
-      scope.$on(AppSettings.AUTH_EVENTS.sessionTimeout, showDialog);
-      scope.$on(AppSettings.AUTH_EVENTS.loginSuccess, hideDialog);
+      scope.visible = true;
     }
   }
 }

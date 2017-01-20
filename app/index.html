@@ -13,9 +13,8 @@
   <body ng-class="{'login-body': !userStatus.isAuthenticated}" ng-controller="ApplicationController">
     <navbar ng-if="userStatus.isAuthenticated"></navbar>
     <toaster-container></toaster-container>
-      <div ui-view ng-if="userStatus.isAuthenticated || currentPage.isLoginPage"></div>
-      <!--div login-dialog ng-if="!userStatus.isAuthenticated && !currentPage.isLoginPage"></div-->
-      <div login-dialog ng-if="!currentPage.isLoginPage"></div>
+      <div ui-view ng-if="userStatus.isAuthenticated"></div>
+      <div login-dialog ng-if="!userStatus.isAuthenticated"></div>
 
       <script src="vendor/jsbn.js"></script>
       <script src="vendor/jsbn2.js"></script>

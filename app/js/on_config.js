@@ -1,4 +1,4 @@
-function OnConfig($stateProvider, $locationProvider, $urlRouterProvider, $compileProvider) {
+function OnConfig($stateProvider, $locationProvider, $urlRouterProvider, $compileProvider, AppSettings) {
   'ngInject';
 
   if (process.env.NODE_ENV === 'production') {
@@ -15,31 +15,37 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider, $compil
       url: '/',
       controller: 'ExampleCtrl as home',
       templateUrl: 'home.html',
-      title: 'Home'
-    })
-    .state('Login', {
-      url: '/login',
-      controller: 'LoginController as vm',
-      templateUrl: 'login.html',
-      title: 'Login'
+      title: 'Home',
+      data: {
+        authorizedRoles: [AppSettings.USER_ROLES.admin, AppSettings.USER_ROLES.all]
+      }
     })
     .state('Test', {
       url: '/test',
       controller: 'TestController as test',
       templateUrl: 'test.html',
-      title: 'Test'
+      title: 'Test',
+      data: {
+        authorizedRoles: [AppSettings.USER_ROLES.admin, AppSettings.USER_ROLES.all]
+      }
     })
     .state('Development', {
       url: '/development',
       controller: 'DevelopmentController as development',
       templateUrl: 'development.html',
-      title: 'Development'
+      title: 'Development',
+      data: {
+        authorizedRoles: [AppSettings.USER_ROLES.admin, AppSettings.USER_ROLES.all]
+      }
     })
     .state('Developments', {
       url: '/developments',
       controller: 'DevelopmentsController as vm',
       templateUrl: 'developments.html',
-      title: 'Developments'
+      title: 'Developments',
+      data: {
+        authorizedRoles: [AppSettings.USER_ROLES.admin, AppSettings.USER_ROLES.all]
+      }
     });
 
   $urlRouterProvider.otherwise('/');
