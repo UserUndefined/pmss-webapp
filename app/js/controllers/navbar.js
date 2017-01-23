@@ -1,4 +1,4 @@
-function NavbarController($rootScope, $scope, $location, $mdSidenav, $mdUtil, AppSettings) {
+function NavbarController($rootScope, $scope, $location, $mdSidenav, $mdUtil, AppSettings, SessionService) {
 'ngInject';
 
   // ViewModel
@@ -6,6 +6,7 @@ function NavbarController($rootScope, $scope, $location, $mdSidenav, $mdUtil, Ap
 
   function initialise(){
     $scope.location = $location;
+    vm.userRole = SessionService.userRole;
   }
 
   vm.signOut = function(){
@@ -14,13 +15,7 @@ function NavbarController($rootScope, $scope, $location, $mdSidenav, $mdUtil, Ap
 
   vm.toggleLeft = buildToggler('left');
   vm.toggleRight = buildToggler('right');
-/*
-  function buildToggler(navID) {
-    return function() {
-      $mdSidenav(navID).toggle();
-    }
-  }
-*/
+
   function buildToggler(navID) {
     var debounceFn = $mdUtil.debounce(function () {
       $mdSidenav(navID)

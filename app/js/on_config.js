@@ -46,6 +46,15 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider, $compil
       data: {
         authorizedRoles: [AppSettings.USER_ROLES.admin, AppSettings.USER_ROLES.all]
       }
+    })
+    .state('Users', {
+      url: '/users',
+      controller: 'UsersController as vm',
+      templateUrl: 'users.html',
+      title: 'Users',
+      data: {
+        authorizedRoles: [AppSettings.USER_ROLES.admin]
+      }
     });
 
   $urlRouterProvider.otherwise('/');
