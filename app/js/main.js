@@ -7,6 +7,7 @@ require ('angularjs-toaster');
 require ('aws-sdk');
 require ('angular-material-data-table');
 require ('angular-messages');
+require ('angular-nvd3');
 
 // angular modules
 import constants from './constants';
@@ -33,7 +34,8 @@ const requires = [
   'toaster',
   'ngMaterial',
   'md.data.table',
-  'ngMessages'
+  'ngMessages',
+  'nvd3'
 ];
 
 // mount on window for testing
