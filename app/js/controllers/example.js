@@ -1,4 +1,4 @@
-function ExampleCtrl(AuthService, $scope) {
+function ExampleCtrl() {
   'ngInject';
 
   // ViewModel
@@ -6,36 +6,6 @@ function ExampleCtrl(AuthService, $scope) {
 
   vm.title = 'AngularJS, Gulp, and Browserify! Written with keyboards and love!';
   vm.number = 1234;
-
-  $scope.refresh = function(){
-    AuthService.refresh(function(err){
-      if(err){
-        console.log(err);
-      } else {
-        console.log('it worked!');
-      }
-    });
-  }
-
-  $scope.refreshSession = function(){
-    AuthService.refreshSession(function(err){
-      if(err){
-        console.log(err);
-      } else {
-        console.log('it worked!');
-      }
-    });
-  }
-
-  $scope.getSession = function(){
-    AuthService.getSession(function(err){
-      if(err){
-        console.log(err);
-      } else {
-        console.log('it worked!');
-      }
-    });
-  }
 
 }
 

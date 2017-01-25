@@ -22,11 +22,11 @@ function AuthService(SessionService, AppSettings, $rootScope) {
     };
     const authenticationDetails = new AWSCognito.CognitoIdentityServiceProvider.AuthenticationDetails(authenticationData);
 
-    var cognitoUser = this.getCognitoUser(username);
+    var cognitoUser = getCognitoUser(username);
 
     cognitoUser.authenticateUser(authenticationDetails, {
       onSuccess: function (result) {
-        SessionService.create(result.accessToken.jwtToken, result.idToken.jwtToken, result.refreshToken.token, username, 'admin');
+        SessionService.create(result.accessToken.jwtToken, result.idToken.jwtToken, result.refreshToken.token);
         $rootScope.$broadcast(AppSettings.AUTH_EVENTS.loginSuccess);
         return callback(null, '');
       },
@@ -48,7 +48,7 @@ function AuthService(SessionService, AppSettings, $rootScope) {
           this.logout();
           return callback(err);
         }
-        SessionService.create(session.accessToken.jwtToken, session.idToken.jwtToken, session.refreshToken.jwtToken, 'cristov', 'admin');
+        SessionService.create(session.accessToken.jwtToken, session.idToken.jwtToken, session.refreshToken.jwtToken);
         $rootScope.$broadcast(AppSettings.AUTH_EVENTS.loginSuccess);
         return callback(null);
       });
@@ -61,25 +61,20 @@ function AuthService(SessionService, AppSettings, $rootScope) {
     return !!SessionService.userName;
   };
 
-  service.getCognitoUser = function(username) {
+  function getCognitoUser(username) {
+    var cognitoUser = null;
     const userData = {
       Username : username || SessionService.userName,
       Pool : userPool
     };
-    return new AWSCognito.CognitoIdentityServiceProvider.CognitoUser(userData);
-  };
-
-  service.getUserAttributes = function(callback) {
-    const cognitoUser = getCognitoUser();
-    cognitoUser.getUserAttributes(function(err, result) {
-      if (err) {
-        return callback(err);
-      }
-      for (var i = 0; i < result.length; i++) {
-        console.log('attribute ' + result[i].getName() + ' has value ' + result[i].getValue());
-      }
-      return callback(null, result);
-    });
+    try{
+      cognitoUser = new AWSCognito.CognitoIdentityServiceProvider.CognitoUser(userData);
+    }
+    catch(err){
+      //unable to create a user from the session
+      console.log(err);
+    }
+    return cognitoUser;
   };
 
   service.isAuthorized = function (authorizedRoles) {
