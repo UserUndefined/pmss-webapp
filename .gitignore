@@ -34,3 +34,4 @@ templates.js
 
 #vscode
 .vscode
+/build/

@@ -8,16 +8,16 @@
         <md-button ng-click="vm.toggleLeft()" class="md-accent">Close</md-button>
       </md-menu-item>
       <md-menu-item>
-        <md-button ng-href="#/dashboard" class="md-accent">Dashboard</md-button>
+        <md-button ng-href="#/dashboard" class="md-accent" ng-click="vm.toggleLeft()">Dashboard</md-button>
       </md-menu-item>
       <md-menu-item>
-        <md-button ng-href="#/developments" class="md-accent">Developments</md-button>
+        <md-button ng-href="#/developments" class="md-accent" ng-click="vm.toggleLeft()">Developments</md-button>
       </md-menu-item>
       <md-menu-item>
-        <md-button ng-click="vm.signOut()" class="md-accent">Sign Out</md-button>
+        <md-button ng-click="vm.signOut()" class="md-accent" ng-click="vm.toggleLeft()">Sign Out</md-button>
       </md-menu-item>
       <md-menu-item ng-if="vm.userRole === 'admin'">
-        <md-button ng-href="#/users" class="md-accent">Manage Users</md-button>
+        <md-button ng-href="#/users" class="md-accent" ng-click="vm.toggleLeft()">Manage Users</md-button>
       </md-menu-item>
     </md-menu-content>
     <nav-developments ng-if="location.path() === '/developments'"></nav-developments>
