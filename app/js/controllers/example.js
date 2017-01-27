@@ -4,6 +4,10 @@ function ExampleCtrl() {
   // ViewModel
   const vm = this;
 
+  function initialise(){
+    console.log('Dashboard initialising');
+  }
+
   vm.number = 1234;
   vm.visitorsChartData = [ {key: 'Complete', y: 5264}, { key: 'Incomplete', y: 3872} ];
 
@@ -71,6 +75,7 @@ function ExampleCtrl() {
     }
   };
 
+  initialise();
 
 }
 

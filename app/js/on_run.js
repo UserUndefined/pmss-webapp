@@ -17,10 +17,10 @@ function OnRun($rootScope, AppSettings, AuthService) {
     var authorizedRoles = next.data.authorizedRoles;
     AuthService.checkUserSession(function(err){
       if(err) {
-        event.preventDefault();
+        //event.preventDefault();
         $rootScope.$broadcast(AppSettings.AUTH_EVENTS.notAuthenticated);
       } else if (!AuthService.isAuthorized(authorizedRoles)) {
-        event.preventDefault();
+        //event.preventDefault();
         $rootScope.$broadcast(AppSettings.AUTH_EVENTS.notAuthorized);
       }
     });
