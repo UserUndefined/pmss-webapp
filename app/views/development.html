@@ -1,398 +1,136 @@
-<section>
-  <div class="container">
-    <div class="row">
-      <div class="dashboard">
-        <h1>Development</h1>
+<div class="row">
+  <h1>Development</h1>
+</div>
+<md-card>
+<md-content layout-padding>
+  <div>
+    <form name="devForm">
+      <div layout-gt-sm="row">
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Development Name</label>
+          <input name="name" ng-model="dev.name" md-maxlength="25" required>
+          <div ng-messages="devForm.name.$error" role="alert" multiple>
+            <div ng-message="required" class="my-message">You must supply a development name.</div>
+            <div ng-message="md-maxlength" class="my-message">Development name too long</div>
+          </div>
+        </md-input-container>
+
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Stock:</label>
+          <md-select  ng-model="dev.stock">
+            <md-option>New Build</md-option>
+            <md-option>Conversion</md-option>
+            <md-option>Refurb</md-option>
+          </md-select>
+        </md-input-container>
+
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Address 1</label>
+          <input name="address1" ng-model="dev.address1" required md-maxlength="25">
+          <div ng-messages="devForm.address1.$error" role="alert" multiple>
+            <div ng-message="required" class="my-message">You must supply an addres</div>
+            <div ng-message="md-maxlength" class="my-message">Address too long</div>
+          </div>
+        </md-input-container>
       </div>
-    </div>
-    <div class="row">
-      <div class="dashboard">
-        <uib-tabset active="activeJustified" justified="true">
-          <uib-tab index="0" heading="Sourcing Step 1">
-            <div class="uib-tab-content">
-              <form name="sourcingStep1Form" style="padding-top: 20px" novalidate>
-                <div class="row">
-                  <div class="col-sm-6">
-                    <div class="form-group" ng-class="{ 'has-error' : sourcingStep1Form.devName.$invalid && !sourcingStep1Form.devName.$pristine }">
-                      <label for="devName">Development Name</label>
-                      <input type="text" class="form-control" id="devName" name="devName" placeholder="Development Name" ng-model="user.name" ng-minlength="3" required>
-                      <p ng-show="sourcingStep1Form.devName.$invalid && !sourcingStep1Form.devName.$pristine" class="help-block">Development name is required.</p>
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label for="devBuild">Select Stock:</label>
-                      <select class="form-control" id="devBuild">
-                        <option>New Build</option>
-                        <option>Conversion</option>
-                        <option>Refurb</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label for="devAddress1">Address 1</label>
-                      <input type="text" class="form-control" id="devAddress1" placeholder="Address Line 1">
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label for="devStock">Select Stock:</label>
-                      <select class="form-control" id="devStock">
-                        <option>Stock</option>
-                        <option>Off Plan</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label for="devAddress2">Address 2</label>
-                      <input type="text" class="form-control" id="devAddress2" placeholder="Address Line 2">
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label for="devCompletionDate">Expected Completion Date</label>
-                      <input type="text" class="form-control" id="devCompletionDate" placeholder="Expected Completion Date">
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label for="devTown">Town</label>
-                      <input type="text" class="form-control" id="devTown" placeholder="Town">
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label for="devSourcer">Sourcer</label>
-                      <input type="text" class="form-control" id="devSourcer" placeholder="Sourcer">
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label for="devCounty">County</label>
-                      <input type="text" class="form-control" id="devCounty" placeholder="County">
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label for="devPostCode">Postcode</label>
-                      <input type="text" class="form-control" id="devPostCode" placeholder="Postcode">
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                  </div>
-                </div>
-                <hr/>
-                <div class="row">
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label for="devBmv">Is It BMV?</label>
-                      <select class="form-control" id="devBmv">
-                        <option>Yes</option>
-                        <option>No</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label for="devPositiveCashFlow">Does It Have a Positive Cash Flow?</label>
-                      <select class="form-control" id="devPositiveCashFlow">
-                        <option>Yes</option>
-                        <option>No</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label for="devStrongRentalDemand">Does It Have a Strong Rental Demand?</label>
-                      <select class="form-control" id="devStrongRentalDemand">
-                        <option>Yes</option>
-                        <option>No</option>
-                      </select>
-                      <input type="text" class="form-control" id="devStrongRentalDemandNotes" placeholder="Notes">
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label for="devMajorEmployers">Are There Major Employers in the Area?</label>
-                      <select class="form-control" id="devMajorEmployers">
-                        <option>Yes</option>
-                        <option>No</option>
-                      </select>
-                      <input type="text" class="form-control" id="devMajorEmployersNotes" placeholder="Notes">
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-6">
-                  </div>
-                  <div class="col-sm-6">
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-6">
-                  </div>
-                  <div class="col-sm-6">
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-6">
-                  </div>
-                  <div class="col-sm-6">
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-6">
-                  </div>
-                  <div class="col-sm-6">
-                  </div>
-                </div>
-                <hr/>
-                <div class="row">
-                  <div class="col-sm-12">
-                    <div class="form-group">
-                      <label for="devGoodIdea">Do You Think This Is A Good Idea?</label>
-                      <input type="text" class="form-control" id="devGoodIdea" placeholder="Good Idea?">
-                    </div>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </uib-tab>
-          <uib-tab index="1" heading="Sourcing Step 2">
-            <div class="uib-tab-content">
-              <form style="padding-top: 20px">
-                <div class="form-group">
-                  <label for="devSiteSold">Percentage of site sold to investors:</label>
-                  <select class="form-control" id="devSiteSold">
-                    <option>10</option>
-                    <option>20</option>
-                    <option>30</option>
-                    <option>40</option>
-                    <option>50</option>
-                    <option>60</option>
-                    <option>70</option>
-                    <option>80</option>
-                    <option>90</option>
-                    <option>100</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="devNumberOfPlots">Number of Plots:</label>
-                  <select class="form-control" id="devNumberOfPlots">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                    <option>13</option>
-                    <option>14</option>
-                    <option>15</option>
-                    <option>16</option>
-                    <option>17</option>
-                    <option>18</option>
-                    <option>19</option>
-                    <option>20</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="devFieldLet">Is Field Let:</label>
-                  <select class="form-control" id="devFieldLet">
-                    <option>Yes1</option>
-                    <option>No</option>
-                    <option>Other</option>
-                  </select>
-                </div>
-              </form>
-            </div>
-          </uib-tab>
-          <uib-tab index="2" heading="Plot List">
-            <div class="uib-tab-content">
-              <div class="row">
-                <table class="table">
-                  <thead>
-                  <tr>
-                    <th>Plot Number</th>
-                    <th>Postal Address</th>
-                    <th>Block</th>
-                    <th>Floor</th>
-                    <th>No of Bedrooms</th>
-                    <th>No of Bathrooms</th>
-                    <th>Parking</th>
-                    <th>Balcony</th>
-                    <th>Service Charge</th>
-                    <th>Tenanted</th>
-                    <th>Floorplan</th>
-                    <th>List Price</th>
-                    <th>RMP Price</th>
-                    <th>Discount</th>
-                    <th>Rent</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>1 High Street, Manchester</td>
-                    <td>4</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>1</td>
-                    <td>Y</td>
-                    <td>N</td>
-                    <td>£2000</td>
-                    <td>Y</td>
-                    <td>Y</td>
-                    <td>£150000</td>
-                    <td>£140000</td>
-                    <td>5%</td>
-                    <td>£500</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>1 High Street, Manchester</td>
-                    <td>4</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>N</td>
-                    <td>N</td>
-                    <td>£1500</td>
-                    <td>Y</td>
-                    <td>Y</td>
-                    <td>£100000</td>
-                    <td>£800000</td>
-                    <td>20%</td>
-                    <td>£300</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>1 High Street, Manchester</td>
-                    <td>3</td>
-                    <td>5</td>
-                    <td>2</td>
-                    <td>1</td>
-                    <td>Y</td>
-                    <td>Y</td>
-                    <td>£2000</td>
-                    <td>N</td>
-                    <td>N</td>
-                    <td>£150000</td>
-                    <td>£140000</td>
-                    <td>5%</td>
-                    <td>£500</td>
-                  </tr>
-                  <tr>
-                    <td>4</td>
-                    <td>1 High Street, Manchester</td>
-                    <td>3</td>
-                    <td>3</td>
-                    <td>2</td>
-                    <td>2</td>
-                    <td>Y</td>
-                    <td>Y</td>
-                    <td>£2000</td>
-                    <td>Y</td>
-                    <td>Y</td>
-                    <td>£200000</td>
-                    <td>£150000</td>
-                    <td>25%</td>
-                    <td>£3000</td>
-                  </tr>
-                  <tr>
-                    <td>5</td>
-                    <td>1 High Street, Manchester</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>N</td>
-                    <td>N</td>
-                    <td>£1000</td>
-                    <td>N</td>
-                    <td>N</td>
-                    <td>£70000</td>
-                    <td>£70000</td>
-                    <td>0%</td>
-                    <td>£250</td>
-                  </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="row">
-                <a href="plot.html"><i class="fa fa-plus-circle"></i>Add New Plot</a>
-              </div>
-            </div>
-          </uib-tab>
-          <uib-tab index="3" heading="Big 50">
-            <div class="uib-tab-content">
-              <form style="padding-top: 20px">
-                <div class="form-group">
-                  <label for="plotInvOverview">Investment Overview:</label>
-                  <input type="text" class="form-control" id="plotInvOverview" placeholder="Enter plot overview">
-                </div>
-                <div class="form-group">
-                  <label for="plotRobView">Rob's View:</label>
-                  <input type="text" class="form-control" id="plotRobView" placeholder="Enter Rob's overview">
-                </div>
-                <div class="form-group">
-                  <label>Address:</label>
-                  <p>287 New Road, Hythe, Manchester, M5 7BG</p>
-                </div>
-                <div class="row">
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label for="bigDeveloperName">Developer Name:</label>
-                      <input type="text" class="form-control" id="bigDeveloperName" placeholder="Developer Name">
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label for="bigDeveloperEmail">Developer Email:</label>
-                      <input type="text" class="form-control" id="bigDeveloperEmail" placeholder="Developer Email">
-                    </div>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </uib-tab>
-        </uib-tabset>
+      <div layout-gt-sm="row">
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Stock:</label>
+          <md-select ng-model="dev.stock2">
+            <md-option>Stock</md-option>
+            <md-option>Off Plan</md-option>
+          </md-select>
+        </md-input-container>
+
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Address 2</label>
+          <input name="address2" ng-model="dev.address2" md-maxlength="15">
+          <div ng-messages="devForm.name.$error" role="alert" multiple>
+            <div ng-message="md-maxlength" class="my-message">Development name too long</div>
+          </div>
+        </md-input-container>
+
+        <md-input-container>
+          <label>Expected Completion Date</label>
+          <md-datepicker ng-model="dev.expectedCompletionDate"></md-datepicker>
+        </md-input-container>
       </div>
-      <br/>
-      <div class="row">
-        <button type="submit" class="btn btn-primary btn-block">Save</button>
+      <div layout-gt-sm="row">
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Town</label>
+          <input name="town" ng-model="dev.town" md-maxlength="15">
+          <div ng-messages="devForm.name.$error" role="alert" multiple>
+            <div ng-message="md-maxlength" class="my-message">Town name too long</div>
+          </div>
+        </md-input-container>
+
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>County</label>
+          <input name="county" ng-model="dev.county" md-maxlength="15">
+          <div ng-messages="devForm.county.$error" role="alert" multiple>
+            <div ng-message="md-maxlength" class="my-message">County name too long</div>
+          </div>
+        </md-input-container>
+
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Sourcer</label>
+          <input name="sourcer" ng-model="dev.sourcer" md-maxlength="10">
+          <div ng-messages="devForm.sourcer.$error" role="alert" multiple>
+            <div ng-message="md-maxlength" class="my-message">Sourcer name too long</div>
+          </div>
+        </md-input-container>
       </div>
-      <br/>
-      <div class="row">
-        <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block">Submit Phase I For Review</button>
-        </div>
-        <div class="col-xs-4"></div>
-        <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block">Submit Phase 2 For Review</button>
-        </div>
+      <div layout-gt-sm="row">
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Postcode</label>
+          <input name="postcode" ng-model="dev.postcode" md-maxlength="10">
+          <div ng-messages="devForm.postcode.$error" role="alert" multiple>
+            <div ng-message="md-maxlength" class="my-message">Postcode name too long</div>
+          </div>
+        </md-input-container>
+
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Ist it BMV?</label>
+          <md-select ng-model="dev.isItBmv">
+            <md-option>Yes</md-option>
+            <md-option>No</md-option>
+          </md-select>
+        </md-input-container>
+
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Does It Have A Positive Cashflow?</label>
+          <md-select ng-model="dev.positiveCashflow">
+            <md-option>Yes</md-option>
+            <md-option>No</md-option>
+          </md-select>
+        </md-input-container>
       </div>
-    </div>
+      <div layout-gt-sm="row">
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Does It Have a Strong Rental Demand?</label>
+          <md-select ng-model="dev.strongRentalDemand">
+            <md-option>Yes</md-option>
+            <md-option>No</md-option>
+          </md-select>
+        </md-input-container>
+
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Are There Major Employers in the Area?</label>
+          <md-select ng-model="dev.majorEmployers">
+            <md-option>Yes</md-option>
+            <md-option>No</md-option>
+          </md-select>
+        </md-input-container>
+
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Do You Think This Is A Good Idea?</label>
+          <input name="goodIdea" ng-model="dev.goodIdea" md-maxlength="10">
+          <div ng-messages="devForm.goodIdea.$error" role="alert" multiple>
+            <div ng-message="md-maxlength" class="my-message">Information too long</div>
+          </div>
+        </md-input-container>
+      </div>
+    </form>
   </div>
-</section>
+</md-content>
+</md-card>
